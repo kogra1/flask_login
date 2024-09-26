@@ -1,0 +1,53 @@
+body{
+    background-color: #070c0e;
+}
+.header{
+    padding: 5px 120px;
+    width: 150px;
+    height: 70px;
+    background-color: #132c38;
+}
+
+
+.border{
+    padding: 80px 50px;
+    width: 400px;
+    height: 450px;
+    border: 1px solid #072736;
+    border-radius: 50px;
+    background-color: #2d4b55;
+}
+
+.button{
+    padding: 10px 40px;
+    background-color: #236B8E;
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.textbox{
+    padding: 10px 40px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 0px;
+}
+
+::placeholder{
+    color: #FFFFFF;
+    opacity: 1 ;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.word{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.bottom{
+    color:#236B8E;
+    font-style: oblique;
+    font-weight: bold;
+}
