@@ -5,12 +5,12 @@ import re
 
 app = Flask(__name__)
 
-app.secret_key = 'secret'
+app.secret_key = 'Your secret key here'
 
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Pocknlock7not!'
-app.config['MYSQL_DB'] = 'geeklogin'
+app.config['MYSQL_USER'] = 'Your username here'
+app.config['MYSQL_PASSWORD'] = 'Your password here'
+app.config['MYSQL_DB'] = 'Your DB name here'
 
 mysql = MySQL(app)
 
