@@ -9,10 +9,19 @@
             <div align="center" class="border">
                 <div class = "header">
                     <h1 class="word">Weather</h1>
+                    {% if periods%} 
                 </div></br></br></br>
-                <h1 class="bottom">
-                    Hi {{session['username']}}! </br></br> Welcome to the index page
-                </h1></br></br></br>
+                <h1 class="text">
+                    The Temparature in {{location}} is {{periods[0].temperature}}° {{periods[0].temperatureUnit}} Today!
+                </h1>
+                <h1 class="text">
+                    The Weather is {{periods[0].shortForecast}}
+                </h1>
+                <h1 class="text">
+                    The Wind Speed is {{periods[0].windSpeed}} {{periods[0].windDirection}} 
+                </h1>
+                {% endif %}
+            </br></br></br>
             <a href="{{ url_for('home') }}" class="button">Back</a>
         </div>
     </body>

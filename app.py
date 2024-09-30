@@ -4,14 +4,15 @@ import MySQLdb.cursors
 import re
 import requests
 
+
 app = Flask(__name__)
 
 app.secret_key = 'Your secret key here'
 
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'Your username here'
-app.config['MYSQL_PASSWORD'] = 'Your password here'
-app.config['MYSQL_DB'] = 'Your DB name here'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Pocknlock7not!'
+app.config['MYSQL_DB'] = 'geeklogin'
 
 mysql = MySQL(app)
 
@@ -83,9 +84,8 @@ def register():
 def home():
     return render_template('home.html')
 
-@app.route('/weather', methods =['POST'])
+@app.route('/weather', methods =['GET', 'POST'])
 def weather():
-    request_data = request.form
     forecast_url, location = retrieve_weather()
     
     forecast = None
@@ -93,7 +93,7 @@ def weather():
     if forecast_url is not None:
         response = requests.get(forecast_url)
         if response.status_code == 200:
-            forecast = retrieve_weather(forecast_url)
+            forecast = response.json()
             periods = forecast["properties"]["periods"]
     return render_template('weather.html', forecast_url=forecast_url, location=location, periods=periods)
 
