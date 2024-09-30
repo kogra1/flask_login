@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import requests
 
 app = Flask(__name__)
 
@@ -13,6 +14,18 @@ app.config['MYSQL_PASSWORD'] = 'Your password here'
 app.config['MYSQL_DB'] = 'Your DB name here'
 
 mysql = MySQL(app)
+
+def retrieve_weather():
+    url = "https://api.weather.gov/points/42.988979,-78.163874"
+    response = requests.get(url)
+    if response.status_code != 200:
+        return None, None
+    data = response.json()
+    forecast_url = data["properties"]["forecast"]
+    city = data["properties"]["relativeLocation"]["properties"]["city"]
+    state = data['properties']['relativeLocation']['properties']['state']
+    location = f"{city}, {state}"
+    return forecast_url, location
 
 @app.route('/')
 @app.route('/login', methods =['GET', 'POST'])
@@ -66,3 +79,22 @@ def register():
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
+@app.route('/Home')
+def home():
+    return render_template('home.html')
+
+@app.route('/weather', methods =['POST'])
+def weather():
+    request_data = request.form
+    forecast_url, location = retrieve_weather()
+    
+    forecast = None
+    periods = None
+    if forecast_url is not None:
+        response = requests.get(forecast_url)
+        if response.status_code == 200:
+            forecast = retrieve_weather(forecast_url)
+            periods = forecast["properties"]["periods"]
+    return render_template('weather.html', forecast_url=forecast_url, location=location, periods=periods)
+
+
