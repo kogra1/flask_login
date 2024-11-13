@@ -9,10 +9,10 @@ app = Flask(__name__)
 
 app.secret_key = 'Your secret key here'
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Pocknlock7not!'
-app.config['MYSQL_DB'] = 'geeklogin'
+app.config['MYSQL_HOST'] = 'Your host here'
+app.config['MYSQL_USER'] = 'Your user here'
+app.config['MYSQL_PASSWORD'] = 'Your password here'
+app.config['MYSQL_DB'] = 'Your DB here'
 
 mysql = MySQL(app)
 
